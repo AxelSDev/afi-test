@@ -80,7 +80,7 @@ const CommercialTruck = () => {
       <div className='flex flex-col items-center my-2 text-[#77727d] text-[6px] italic'>
         <p>Your actual premium may be higher or lower based on a number of factors. Coverages and discounts are subject to policy terms, conditions, qualifications, and availability. This proposal does not contain all possible coverage options and is only intended to highlight some of your coverage options. Please contact American Fleet to further discuss all of the additional coverage options which may be available.</p>
       </div>
-      <button type='button' onClick={routeChange} className='w-11/12 py-2 px-8 bg-red-700 text-white font-bold mt-auto mb-20 rounded-3xl'>FINALIZE QUOTE</button>
+      <button type='button' onClick={routeChange} className='w-11/12 py-2 px-8 bg-red-700 text-white font-bold mt-auto mb-10 rounded-3xl'>FINALIZE QUOTE</button>
     </div>
   );
 };

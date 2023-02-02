@@ -92,14 +92,14 @@ const CostumerMultiStepsForm = () => {
               <div>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">DOT Number</h4>
-                  {!dotChecked && <input name="dotNumber" type="number" className="multistepsinput" id="dotNumberInput" onChange={handleChange} value={insuranceForm.dotNumber} />}
+                  {!dotChecked && <input name="dotNumber" type="number" pattern="\d*" className="multistepsinput" id="dotNumberInput" onChange={handleChange} value={insuranceForm.dotNumber} />}
                   <div className="flex items-center pl-4">
                     <input type="checkbox" className="w-fit mr-4" checked={dotChecked} onChange={() =>setDotChecked(!dotChecked)} />I do not have a DOT number yet
                   </div>
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Years In Business</h4>
-                  <input name="businessYears" type="number" className="multistepsinput" onChange={handleChange} value={insuranceForm.businessYears} />
+                  <input name="businessYears" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.businessYears} />
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-left text-xl">When would you like your coverage to start?</h4>
@@ -126,11 +126,11 @@ const CostumerMultiStepsForm = () => {
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Number of Trucks</h4>
-                  <input name="trucks" type="number" className="multistepsinput" onChange={handleChange} value={insuranceForm.trucks} />
+                  <input name="trucks" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.trucks} />
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Number of Drivers</h4>
-                  <input name="drivers" type="number" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
+                  <input name="drivers" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
                 </label>
               </div>
               <div>
