@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import truck from '../../images/truck2tiny.png';
 import producerImage from '../../images/Stephen-smtiny.png';
 
-const CompanyPDF2 = () => {
+const CommercialTruck = () => {
   const navigate = useNavigate();
   const routeChange = () =>{ 
     navigate('/finalize');
@@ -12,7 +12,7 @@ const CompanyPDF2 = () => {
   };
 
   return (
-    <div className="flex flex-col items-center h-[100vh]">
+    <div className="flex flex-col items-center h-[90vh]">
       <div className="flex flex-col items-center text-xl font-bold">
         <p>Commercial Trucking Quote for:</p>
         <p className="mt-2">T AND D TRANSPORTATION</p>
@@ -85,4 +85,4 @@ const CompanyPDF2 = () => {
   );
 };
 
-export default CompanyPDF2;
+export default CommercialTruck;
