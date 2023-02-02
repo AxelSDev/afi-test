@@ -1,0 +1,122 @@
+.multiStepsFormPage {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.circlesDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.circleDiv {
+  display: flex;
+  align-items: center;
+}
+
+.circleDiv:last-child {
+  width: fit-content;
+}
+
+.circle {
+  width: fit-content;
+  padding: 0.125rem 0.8rem;
+  border-width: 2px;
+  border-radius: 9999px;
+}
+
+.circleActive {
+  width: fit-content;
+  padding: 0.125rem 0.8rem;
+  border-width: 2px;
+  border-radius: 9999px;
+  --tw-border-opacity: 1;
+  border-color: rgb(185 28 28 / var(--tw-border-opacity));
+}
+
+.circleSpan {
+  height: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.circleSpanActive {
+  height: 0.25rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+
+}
+
+.lastSpanHidden {
+  display: none;
+}
+
+.multiStepsForm {
+  width: 100%;
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.multiStepsNextButtonDiv {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.multiStepsButtonNext {
+  width: fit-content;
+  padding: 0.5rem 2.5rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  border-radius: 1.5rem/* 24px */;
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.multistepsinput {
+  background-color: white;
+  color: black;
+  border: 2px solid #f2f2f2;
+  border-radius: 1.5rem;
+  padding: 8px 24px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.CostumerMultiStepsLabel {
+  font-weight: bold;
+  font-size: 1.125rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.multiStepsselect {
+  background-color: white;
+  color: black;
+  border: 2px solid #f2f2f2;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 8px 24px;
+  border-radius: 1.5rem;
+}
