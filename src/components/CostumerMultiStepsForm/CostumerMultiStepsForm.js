@@ -42,7 +42,7 @@ const CostumerMultiStepsForm = () => {
   };
 
   const updateWithDotNumber = async (dotNumber) => {
-    if (dotChecked || dotNumber === 0) {
+    if (dotChecked || ['0', ''].includes(dotNumber)) {
       jump(2);
       return;
     };
@@ -70,7 +70,7 @@ const CostumerMultiStepsForm = () => {
     setTimeout(() => {
       setLoading(false);
       setComercialForm(true);
-    }, "3000")
+    }, "1500")
     saveInsuranceCostumerFormLocalStorage(insuranceForm);
   };
 
@@ -102,8 +102,8 @@ const CostumerMultiStepsForm = () => {
                   <input name="businessYears" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.businessYears} />
                 </label>
                 <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-left text-xl">When would you like your coverage to start?</h4>
-                  <input name="coverageStartDate" type="date" className="multistepsinput" onChange={handleChange} value={insuranceForm.coverageStartDate} />
+                  <h4 className="w-fit pl-4 text-left text-xl">When would you like to start?</h4>
+                  <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
                 </label>
               </div>
               <div>
@@ -113,7 +113,7 @@ const CostumerMultiStepsForm = () => {
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Garage State</h4>
-                  <select name="garageState" id="garageState" className="multiStepsselect" onChange={handleChange} value={insuranceForm.garageState}>
+                  <select name="garageState" className="multiStepsselect" onChange={handleChange} value={insuranceForm.garageState}>
                     <option value="selectState">Select State</option>
                     {usStates.map((state) => (
                       <option key={state.id} value={state.value_back}>{state.value}</option>
@@ -122,7 +122,7 @@ const CostumerMultiStepsForm = () => {
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Garage Zip Code</h4>
-                  <input name="garageZip" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.garageZip} />
+                  <input name="garageZip" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.garageZip} />
                 </label>
                 <label className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 text-xl">Number of Trucks</h4>

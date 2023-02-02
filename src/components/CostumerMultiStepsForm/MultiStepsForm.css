@@ -110,6 +110,7 @@ h2 {
 }
 
 .multiStepsselect {
+  height: 54px;
   background-color: white;
   color: black;
   border: 2px solid #f2f2f2;
