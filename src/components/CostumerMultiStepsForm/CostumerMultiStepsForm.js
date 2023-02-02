@@ -156,7 +156,7 @@ const CostumerMultiStepsForm = () => {
               <div>
                 <div className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 mb-2 text-xl">Radius of driving</h4>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-4">
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "0" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="0">0 - 50 Miles</button>
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "51" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="51">51 - 200 Miles</button>
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "201" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="201">201 - 500 Miles</button>
@@ -164,7 +164,7 @@ const CostumerMultiStepsForm = () => {
                   </div>
                 </div>
                 <div className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 mb-2 text-xl">Select your coverage(s)</h4>
+                  <h4 className="w-fit pl-4 my-2 text-xl">Select your coverage(s)</h4>
                   <div>
                     <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.al ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="al">Automotive Liability</button>
                     <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.ntl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="ntl">Non-Trucking Liability</button>
