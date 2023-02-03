@@ -71,7 +71,7 @@ const CommercialTruck = () => {
       <div className='flex w-11/12 mt-4 bg-[#dae3f3] font-bold'>
         <img src={producerImage} alt="CoverWhale logo" className='w-1/5' />
         <div className='w-4/5 flex flex-col justify-between items-center py-2 px-1'>
-          <div className='italic text-[8px]'>
+          <div className='italic text-[6px]'>
             <p>“Hey there! This is Stephen Langford at American Fleet - America’s #1 Fleet Insurance Broker. I‘d love the opportunity to earn your business. Please contact me today with any questions or to get started.”</p>
           </div>
           <p className='text-xs'>(817)242-5008 | Stephen@TeamAFI.com</p>
