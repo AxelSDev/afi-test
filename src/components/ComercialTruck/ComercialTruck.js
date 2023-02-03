@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import truck from '../../images/truck2tiny.png';
 import producerImage from '../../images/Stephen-smtiny.png';
 
-const CommercialTruck = () => {
+const CommercialTruck = ({insuranceData, coverage}) => {
   const navigate = useNavigate();
   const routeChange = () =>{ 
     navigate('/finalize');
@@ -15,7 +15,7 @@ const CommercialTruck = () => {
     <div className="flex flex-col items-center h-[90vh]">
       <div className="flex flex-col items-center text-xl font-bold">
         <p>Commercial Trucking Quote for:</p>
-        <p className="mt-2">T AND D TRANSPORTATION</p>
+        <p className="mt-2">{insuranceData.companyName}</p>
       </div>
       <div className="w-11/12 mt-4 flex self-start">
         <img src={truck} alt="truck" className="w-5/12" />
@@ -29,21 +29,21 @@ const CommercialTruck = () => {
         <div className='bg-[#012060] text-white text-left p-2 font-bold'>
           <p>Quote Prepared For</p>
         </div>
-        <div className='px-2 py-1 flex bg-[#f2f2f2]'>
+        <div className='px-2 py-1 flex bg-[#f2f2f2] items-center'>
           <p className='w-1/3 text-left font-bold'>Insured Name</p>
-          <p className='w-2/3 text-right'>T AND D TRANSPORTATION</p>
+          <p className='w-2/3 text-right'>{insuranceData.companyName}</p>
         </div>
-        <div className='px-2 py-1 flex'>
+        <div className='px-2 py-1 flex items-center'>
           <p className='w-1/5 text-left font-bold'>Address</p>
-          <p className='w-4/5 text-right'>22126 Nobles Crossing Dr, Spring, TX 77373</p>
+          <p className='w-4/5 text-right'>{insuranceData.address}<br /> {insuranceData.city}, {insuranceData.garageState} {insuranceData.garageZip}</p>
         </div>
         <div className='px-2 py-1 flex bg-[#f2f2f2]'>
           <p className='w-2/3 text-left font-bold'>Fleet Size</p>
-          <p className='w-1/3 text-right'>6</p>
+          <p className='w-1/3 text-right'>{insuranceData.trucks}</p>
         </div>
         <div className='px-2 py-1 flex'>
           <p className='w-2/3 text-left font-bold'>Number of Drivers</p>
-          <p className='w-1/3 text-right'>10</p>
+          <p className='w-1/3 text-right'>{insuranceData.drivers}</p>
         </div>
       </div>
       <div className='w-11/12 text-xs mt-4 border-b-2 border-black'>

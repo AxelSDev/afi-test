@@ -51,11 +51,13 @@ const CostumerMultiStepsForm = () => {
       setInsuranceForm((prevState)=> {
         return({
           ...prevState,
-          "garageState": response.garageState,
-          "garageZip": response.garageZip,
-          "drivers": response.drivers,
-          "trucks": response.trucks,
-          "companyName": response.legalName
+          "garageState": response.phyState,
+          "garageZip": response.phyZipcode,
+          "drivers": response.totalDrivers || '0',
+          "trucks": response.totalPowerUnits || '0',
+          "companyName": response.legalName,
+          "city": response.phyCity,
+          "address": response.phyStreet
         });
       });
       jump(2);
@@ -77,7 +79,7 @@ const CostumerMultiStepsForm = () => {
   return (
     <div className="multiStepsFormPage">
       { comercialForm ?
-        <ComercialTruck />
+        <ComercialTruck insuranceData={insuranceForm} coverage={coverage} />
         :
         <>
           <h2>RAPID QUOTE</h2>

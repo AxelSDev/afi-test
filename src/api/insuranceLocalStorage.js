@@ -22,6 +22,8 @@ export const getInsuranceCostumerFormLocalStorage = () => {
       userName: '',
       email: '',
       phone: '',
+      address: '',
+      city: '',
       radiusDriving: '0'
     };
     return insuranceForm;
