@@ -11,6 +11,8 @@ const CommercialTruck = ({insuranceData, coverage}) => {
     return x.toFixed().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  const address = [`${insuranceData.address}`, `${insuranceData.city}, ${insuranceData.garageState} ${insuranceData.garageZip}`];
+
   return (
     <div className="flex flex-col items-center h-[90vh]">
       <div className="flex flex-col items-center text-xl font-bold">
@@ -35,7 +37,7 @@ const CommercialTruck = ({insuranceData, coverage}) => {
         </div>
         <div className='px-2 py-1 flex items-center'>
           <p className='w-1/5 text-left font-bold'>Address</p>
-          <p className='w-4/5 text-right'>{insuranceData.address}<br /> {insuranceData.city}, {insuranceData.garageState} {insuranceData.garageZip}</p>
+          <div className='w-4/5 text-right'>{address.map((text) => <p key={text}>{text}</p>)}</div>
         </div>
         <div className='px-2 py-1 flex bg-[#f2f2f2]'>
           <p className='w-2/3 text-left font-bold'>Fleet Size</p>
