@@ -3,11 +3,11 @@ import truck from '../../images/truck2tiny.png';
 import logo from '../../images/AFIwhitelogoPDF.png';
 
 const CompanyPDF2 = ({pdfData}) => {
-  const trucks = pdfData.response.totalPowerUnits;
-  const drivers = pdfData.response.totalDrivers;
-  const totalPremium = trucks !== null ? trucks * 12128  : 12128;
+  const trucks = pdfData.response.totalPowerUnits || 0;
+  const drivers = pdfData.response.totalDrivers || 0;
+  const totalPremium = trucks !== 0 ? trucks * 12128  : 12128;
   const monthlyPremium = totalPremium / 12;
-  const premiumPerTruck = trucks !== null ? monthlyPremium / trucks : monthlyPremium;
+  const premiumPerTruck = trucks !== 0 ? monthlyPremium / trucks : monthlyPremium;
   const DOTNmber = pdfData.DOTNumber || 0;
   const companyName = pdfData.response.legalName.toUpperCase() || 'NO NAME';
   const todayTitle = pdfData.effectiveDate;
