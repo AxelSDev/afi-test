@@ -16,6 +16,7 @@ const CostumerDOTPDF = () => {
   const [DOTNumber, setDOTNumber] = useState('');
   const [effectiveDate, setEffectiveDate] = useState(today);
   const [link, setLink] = useState('false');
+  const [loading, setLoading] = useState(false);
   const producer = producers.filter((producer) => producer.AgentName === "Megan DeGroot")[0];
 
   const handleDOTNumber = (event) => {
@@ -36,7 +37,9 @@ const CostumerDOTPDF = () => {
     if (response.status === 404) {
       alert('submission not found');
     } else {
+      setLoading(true);
       await handleMailPDF({response, effectiveDate, producer, DOTNumber});
+      setLoading(false);
       jump(2);
     };
   };
@@ -52,6 +55,11 @@ const CostumerDOTPDF = () => {
 
   return (
     <>
+      { loading && (
+        <div className="loader">
+          <div className="spinner" />
+        </div>
+      )}
       <div className="w-1/4 flex text-3xl mt-24">
         <Circles circleNumber={total} current={current} />
       </div>
