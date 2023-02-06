@@ -52,7 +52,7 @@ const CostumerDOTPDF = () => {
     formData.append("pdf", pdfUserBlob, `${underscoreCompanyName}`);
     const response = await postPDFAxios(formData);
     const mailLink = response.split('URL: ');
-    setLink(mailLink[1].replace('s3.us-east-2.amazonaws', 'americanfleetinsurance').replace('https://',''));
+    setLink(mailLink[1].replace('s3.us-east-2.amazonaws', 'americanfleetinsurance'));
   }
 
   return (
