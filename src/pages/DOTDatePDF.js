@@ -4,7 +4,7 @@ import logo from '../images/AFI-FullColor.png'
 
 const DOTDatePDF = () => (
   <StepsProvider>
-    <img src={logo} alt='logo' className="w-1/3" />
+    <img src={logo} alt='logo' className="w-1/4" />
     <CostumerDOTPDF />
   </StepsProvider>
 );
