@@ -46,11 +46,13 @@ const CostumerDOTPDF = () => {
   
   const handleMailPDF = async (pdfData) => {
     const pdfUserBlob = await pdf(<CompanyPDF2 pdfData={pdfData} />).toBlob();
+    const companyName = pdfData.response.legalName;
+    const underscoreCompanyName = companyName.replaceAll(' ','_');
     const formData = new FormData();
-    formData.append("pdf", pdfUserBlob, `${pdfData.response.legalName}`);
+    formData.append("pdf", pdfUserBlob, `${underscoreCompanyName}`);
     const response = await postPDFAxios(formData);
-    const maillink = response.split('URL: ');
-    setLink(maillink[1]);
+    const mailLink = response.split('URL: ');
+    setLink(mailLink[1].replace('s3.us-east-2.amazonaws', 'americanfleetinsurance'));
   }
 
   return (
@@ -60,7 +62,7 @@ const CostumerDOTPDF = () => {
           <div className="spinner" />
         </div>
       )}
-      <div className="w-1/4 flex text-3xl mt-24">
+      <div className="w-1/4 flex text-3xl mt-8">
         <Circles circleNumber={total} current={current} />
       </div>
       <form className="w-1/2 mt-10">
@@ -84,18 +86,19 @@ const CostumerDOTPDF = () => {
             <input name="policyStartDate" type="date" className="multistepsinput" onChange={handleDate} value={effectiveDate} />
           </label>
         </div>
-        <div>
-          <p>File uploaded successfully.
-            {' '}
-            <a href={link} className='text-blue-500 underline'>
-              link
-            </a>
-          </p>
+        <div className="flex flex-col items-center">
+          <p className="text-xl">File uploaded successfully. Click the button below to send an email.</p>
+          <a
+            className="bg-green-700 text-white w-3/4 rounded-xl py-4 px-10 mt-10 text-2xl"
+            href={`mailto:?bcc=megan@teamafi.com&amp;subject=Insurance%20Quote%20from%20American%20Fleet&amp;body=Please%20see%20the%20quote%20from%20American%20Fleet.%0D%0A%0D%0AThe%20link%20below%20will%20open%20up%20the%20quote%20as%20a%20PDF%20so%20you%20can%20view%20and%20download.%0D%0A%0D%0A${link}%0D%0A%0D%0AFeel%20free%20to%20call%20me%20with%20any%20questions%20and%20or%20to%20get%20started.%0D%0A%0D%0AMegan%20DeGroot%0D%0A469-830-1658%0D%0AMegan%40TeamAFI.com%0D%0AAmericanFleetInsurance.com`}
+          >
+            EMAIL PDF
+          </a>
         </div>
       </Steps>
         <div className="multiStepsButtonDiv">
           {current === 1 && <button type="button" className="bg-red-700 text-white w-1/2 rounded-3xl py-2 px-10 mt-12" onClick={getDotData}>GENERATE PDF</button>}
-          {current === total && <button type="button" className="bg-red-700 text-white w-1/2 rounded-3xl py-2 px-10 mt-12" onClick={prev}>RETURN</button>}
+          {current === total && <button type="button" className="bg-red-700 text-white w-1/2 rounded-xl py-2 px-10 mt-12" onClick={prev}>RETURN</button>}
         </div>
       </form>
     </>
