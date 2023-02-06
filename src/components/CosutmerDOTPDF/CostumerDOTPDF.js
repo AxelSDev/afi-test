@@ -90,7 +90,7 @@ const CostumerDOTPDF = () => {
           <p className="text-xl">File uploaded successfully. Click the button below to send an email.</p>
           <a
             className="bg-green-700 text-white w-3/4 rounded-xl py-4 px-10 mt-10 text-2xl"
-            href={`mailto:?bcc=megan@teamafi.com&;subject=Insurance%20Quote%20from%20American%20Fleet&;body=Please%20see%20the%20quote%20from%20American%20Fleet.%0D%0A%0D%0AThe%20link%20below%20will%20open%20up%20the%20quote%20as%20a%20PDF%20so%20you%20can%20view%20and%20download.%0D%0A%0D%0A${link}%0D%0A%0D%0AFeel%20free%20to%20call%20me%20with%20any%20questions%20and%20or%20to%20get%20started.%0D%0A%0D%0AMegan%20DeGroot%0D%0A469-830-1658%0D%0AMegan%40TeamAFI.com%0D%0AAmericanFleetInsurance.com`}
+            href={`mailto:?bcc=megan@teamafi.com&subject=Insurance%20Quote%20from%20American%20Fleet&body=Please%20see%20the%20quote%20from%20American%20Fleet.%0D%0A%0D%0AThe%20link%20below%20will%20open%20up%20the%20quote%20as%20a%20PDF%20so%20you%20can%20view%20and%20download.%0D%0A%0D%0A${link}%0D%0A%0D%0AFeel%20free%20to%20call%20me%20with%20any%20questions%20and%20or%20to%20get%20started.%0D%0A%0D%0AMegan%20DeGroot%0D%0A469-830-1658%0D%0AMegan%40TeamAFI.com%0D%0AAmericanFleetInsurance.com`}
           >
             EMAIL PDF
           </a>
