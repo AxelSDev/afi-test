@@ -152,7 +152,7 @@ const CostumerMultiStepsForm = () => {
                     <h4 className="w-fit pl-4 text-left text-xl">Cell Phone</h4>
                     <p className="text-sm w-fit ml-2 italic">(Where we will email your quote)</p>
                   </div>
-                  <input name="phone" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.phone} />
+                  <input name="phone" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.phone} />
                 </label>
               </div>
               <div>
