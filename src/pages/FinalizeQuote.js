@@ -7,8 +7,8 @@ const FinalizeQuote = () => {
   }, "1500");
 
   return (
-    <div className="text-left text-lg flex flex-col items-center">
-      <div className="w-11/12">
+    <div className="text-left text-lg flex flex-col items-center lg:mt-20">
+      <div className="w-1/3">
         <p className="mb-4">Judge, we just emailed and texted you a pdf of the quote.</p>
         <b className="text-xl">Here are the next steps to finalize your quote.</b>
         <div className="mt-4 w-fit flex items-center font-bold text-2xl py-2 px-4 text-blue-900 border-blue-900 rounded-full border-2">1</div>

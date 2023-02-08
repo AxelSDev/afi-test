@@ -119,3 +119,37 @@ h2 {
   padding: 8px 24px;
   border-radius: 1.5rem;
 }
+
+@media (min-width: 1024px) {
+  .circlesDiv {
+    width: 75%;
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .circle {
+    padding: 0.2rem 1.3rem;
+    border-width: 4px;
+  }
+
+  .circleActive {
+    padding: 0.2rem 1.3rem;
+    border-width: 4px;
+  }
+
+  .multiStepsForm {
+    width: 60%;
+    min-height: 55vh;
+  }
+
+  .CostumerMultiStepsLabel {
+    font-size: 1.125rem;
+    margin-top: 16px;
+  }
+
+  .multiStepsButtonNext {
+    padding: .8rem 4rem;
+    border-radius: 1.5rem;
+    font-size: 1.3rem;
+  }
+}

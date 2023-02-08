@@ -82,12 +82,12 @@ const CostumerMultiStepsForm = () => {
         <ComercialTruck insuranceData={insuranceForm} coverage={coverage} />
         :
         <>
-          <h2>RAPID QUOTE</h2>
+          <h2 className="lg:text-3xl lg:mt-4">RAPID QUOTE</h2>
           <div className="circlesDiv">
             <Circles circleNumber={total} current={current} />
           </div>
           { current === 2 && 
-            <h3>Please confirm the below information.</h3>
+            <h3 className="lg:text-xl">Please confirm the below information.</h3>
           }
           <form onSubmit={handleSubmit} className="multiStepsForm">
             <Steps>
@@ -108,8 +108,8 @@ const CostumerMultiStepsForm = () => {
                   <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
                 </label>
               </div>
-              <div>
-                <label className="CostumerMultiStepsLabel">
+              <div className="lg:grid lg:grid-cols-2 lg:gap-4">
+                <label className="CostumerMultiStepsLabel lg:col-span-2">
                   <h4 className="w-fit pl-4 text-xl">Company Name</h4>
                   <input name="companyName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.companyName} />
                 </label>
@@ -158,7 +158,7 @@ const CostumerMultiStepsForm = () => {
               <div>
                 <div className="CostumerMultiStepsLabel">
                   <h4 className="w-fit pl-4 mb-2 text-xl">Radius of driving</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "0" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="0">0 - 50 Miles</button>
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "51" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="51">51 - 200 Miles</button>
                     <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "201" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="201">201 - 500 Miles</button>
