@@ -21,7 +21,7 @@ const CommercialTruck = ({insuranceData, coverage}) => {
       </div>
       <div className="w-11/12 mt-4 flex self-start justify-evenly">
         <img src={truck} alt="truck" className="w-5/12 lg:w-1/3" />
-        <div className="w-7/12 lg:w-5/12 bg-yellow-200 font-bold flex flex-col justify-center items-center lg:bg-white lg:h-1/2 lg:mt-16">
+        <div className="w-7/12 lg:w-5/12 bg-yellow-200 font-bold flex flex-col justify-center items-center lg:justify-start lg:mt-8 lg:bg-white">
           <p className='mb-1 mt-2 text-xs lg:text-3xl'>Estimated Monthly Premium</p>
           <p className='text-2xl lg:text-5xl'>${numberWithCommas(1259)}</p>
           <p className='text-xs italic mt-auto mb-1 lg:text-xl lg:mt-4'>or ${numberWithCommas(689)} per truck</p>
@@ -38,7 +38,7 @@ const CommercialTruck = ({insuranceData, coverage}) => {
           </div>
           <div className='px-2 py-1 flex items-center'>
             <p className='w-1/5 text-left font-bold'>Address</p>
-            <div className='w-4/5 text-right'>{address.map((text) => <p key={text}>{text}</p>)}</div>
+            <div className='w-4/5 text-right flex flex-col items-end lg:flex-row lg:justify-end'>{address.map((text) => <p key={text} className='w-fit'>{text}</p>)}</div>
           </div>
           <div className='px-2 py-1 flex bg-[#f2f2f2]'>
             <p className='w-2/3 text-left font-bold'>Fleet Size</p>
@@ -73,7 +73,7 @@ const CommercialTruck = ({insuranceData, coverage}) => {
         </div>
       </div>
       <div className='flex w-11/12 mt-4 bg-[#dae3f3] font-bold'>
-        <img src={producerImage} alt="CoverWhale logo" className='w-1/5' />
+        <img src={producerImage} alt="CoverWhale logo" className='w-1/5 lg:w-1/6' />
         <div className='w-4/5 flex flex-col justify-between items-center py-2 px-1 lg:justify-around'>
           <div className='italic text-[6px] lg:text-xl'>
             <p>“Hey there! This is Stephen Langford at American Fleet - America’s #1 Fleet Insurance Broker. I‘d love the opportunity to earn your business. Please contact me today with any questions or to get started.”</p>

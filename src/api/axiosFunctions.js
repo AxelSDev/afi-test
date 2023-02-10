@@ -4,7 +4,7 @@ const baseURL = 'https://api.americanfleetinsurance.com';
 
 export const sendDotAxios = async (dotNumber) => {
   try {
-    const response = await axios.post(baseURL + '/dotnumber', {
+    const response = await axios.post(baseURL + '/getdotnumber', {
       "dotNumber": dotNumber
     })
     return response.data;
