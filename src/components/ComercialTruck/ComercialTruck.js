@@ -19,9 +19,9 @@ const CommercialTruck = ({insuranceData, coverage}) => {
         <p>Commercial Trucking Quote for:</p>
         <p className="mt-2 lg:underline">{insuranceData.companyName}</p>
       </div>
-      <div className="w-11/12 mt-4 flex self-start justify-around">
-        <img src={truck} alt="truck" className="w-1/3" />
-        <div className="w-5/12 bg-yellow-200 font-bold flex flex-col justify-center items-center lg:bg-white lg:h-1/2 lg:mt-16">
+      <div className="w-11/12 mt-4 flex self-start justify-evenly">
+        <img src={truck} alt="truck" className="w-5/12 lg:w-1/3" />
+        <div className="w-7/12 lg:w-5/12 bg-yellow-200 font-bold flex flex-col justify-center items-center lg:bg-white lg:h-1/2 lg:mt-16">
           <p className='mb-1 mt-2 text-xs lg:text-3xl'>Estimated Monthly Premium</p>
           <p className='text-2xl lg:text-5xl'>${numberWithCommas(1259)}</p>
           <p className='text-xs italic mt-auto mb-1 lg:text-xl lg:mt-4'>or ${numberWithCommas(689)} per truck</p>
