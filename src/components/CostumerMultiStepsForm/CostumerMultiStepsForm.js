@@ -3,12 +3,16 @@ import { Steps, useSteps } from "react-step-builder";
 import ComercialTruck from "../ComercialTruck/ComercialTruck";
 import { sendDotAxios } from "../../api/axiosFunctions";
 import { getInsuranceCostumerFormLocalStorage, saveInsuranceCostumerFormLocalStorage } from "../../api/insuranceLocalStorage";
+import AddVehiclesModal from "../modals/AddVehiclesModal";
+import AddDriversModal from "../modals/AddDriversModal";
 import Circles from "./Circles";
 import usStates from '../../data/us-states-with-quotes.json';
+import { RxCopy } from "react-icons/rx";
 import './MultiStepsForm.css';
 
 const CostumerMultiStepsForm = () => {
   const { next, jump, current, total } = useSteps();
+  const [isCopied, setIsCopied] = useState(false);
   const [comercialForm, setComercialForm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dotChecked, setDotChecked] = useState(false);
@@ -76,6 +80,68 @@ const CostumerMultiStepsForm = () => {
     saveInsuranceCostumerFormLocalStorage(insuranceForm);
   };
 
+  const [vehiclesArray, setVehiclesArray] = useState([
+      {
+        vin: '1NPALU9XX7N662029',
+        year: '2019',
+        make: 'make',
+        model: 'Freightliner Cascadia',
+        value: 'value',
+        class_key: 'class_key',
+        body_type_key: 'body_type_key',
+        deductible_type: 'deductible_type',
+        deductible: 'deductible'
+      },
+      {
+        vin: '1NPALU9XX7N662027',
+        year: '2019',
+        make: 'make',
+        model: 'Freightliner Cascadia',
+        value: 'value',
+        class_key: 'class_key',
+        body_type_key: 'body_type_key',
+        deductible_type: 'deductible_type',
+        deductible: 'deductible'
+      },
+      {
+        vin: '1NPALU9XX7N662028',
+        year: '2019',
+        make: 'make',
+        model: 'Freightliner Cascadia',
+        value: 'value',
+        class_key: 'class_key',
+        body_type_key: 'body_type_key',
+        deductible_type: 'deductible_type',
+        deductible: 'deductible'
+      }
+    ]
+  );
+  // const driversArray = [
+  //   {
+  //     first_name: 'first',
+  //     last_name: 'last',
+  //     license_number: 'license_number',
+  //     license_state: 'license_state',
+  //     years_experience: 'years_experience',
+  //     date_hire: 'date_hire',
+  //     date_birth: 'date_birth',
+  //     elegibility: 'elegibility',
+  //     accidents: 'accidents',
+  //     violations: 'violations',
+  //     suspensions: 'suspensions'
+  //   },
+  // ]
+  const [modalDriver,setModalDriver] = useState('modal_inactive');
+  const [modalVehicle,setModalVehicle] = useState('modal_inactive');
+  const copyText = 'https://myafiquote.com/{dot}/addDriver';
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(copyText)
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 1500);
+  };
+
   return (
     <div className="multiStepsFormPage">
       { comercialForm ?
@@ -86,9 +152,6 @@ const CostumerMultiStepsForm = () => {
           <div className="circlesDiv">
             <Circles circleNumber={total} current={current} />
           </div>
-          { current === 2 && 
-            <h3 className="lg:text-xl">Please confirm the below information.</h3>
-          }
           <form onSubmit={handleSubmit} className="multiStepsForm">
             <Steps>
               <div>
@@ -109,6 +172,7 @@ const CostumerMultiStepsForm = () => {
                 </label>
               </div>
               <div className="lg:grid lg:grid-cols-2 lg:gap-4">
+                <h3 className="lg:text-xl">Please confirm the below information.</h3>
                 <label className="CostumerMultiStepsLabel lg:col-span-2">
                   <h4 className="w-fit pl-4 text-xl">Company Name</h4>
                   <input name="companyName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.companyName} />
@@ -134,6 +198,44 @@ const CostumerMultiStepsForm = () => {
                   <h4 className="w-fit pl-4 text-xl">Number of Drivers</h4>
                   <input name="drivers" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
                 </label>
+              </div>
+              <div className="flex flex-col items-center">
+                <h3 className="lg:text-xl w-5/6 mb-2">We found a few vehicles associated with your DOT number.</h3>
+                <div className="max-h-[55vh] overflow-y-scroll rounded border-2 border-red-700 px-4 pb-4 shadow-xl lg:w-3/4">
+                  {vehiclesArray.map((vehicle) => (
+                  <div className="mt-4 flex flex-col lg:flex-row" key={vehicle.vin}>
+                    <div>
+                      <h4 className="text-left font-bold text-xl">{vehicle.year} {vehicle.model}</h4>
+                      <h5 className="text-left text-sm">VIN: {vehicle.vin}</h5>
+                    </div>
+                    <div className="flex justify-evenly mt-2">
+                      <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-green-700">Approve</button>
+                      <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-red-700">Remove</button>
+                    </div>
+                  </div>
+                  ))}
+                </div>
+                <button type="button" onClick={() => setModalVehicle('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 mt-8 lg:text-xl lg:w-1/2">+ Add Vehicle</button>
+                <div className={modalVehicle}>
+                  <AddVehiclesModal setModalVehicle={setModalVehicle} vehiclesArray={vehiclesArray} setVehiclesArray={setVehiclesArray} />
+                </div>
+              </div>
+              <div className="flex flex-col items-center">
+                <h3 className="lg:text-xl w-3/4 my-2">Copy the link below and text it to your {insuranceForm.drivers} drivers.</h3>
+                <h3 className="lg:text-xl w-3/4 my-2">We will let you know when each driver completes the form.</h3>
+                <div className="flex items-center mt-4 border-slate-300 border-2 rounded-3xl p-2 lg:w-1/2 lg:mt-8">
+                  <input type="text" value={copyText} className="bg-white lg:px-2" readOnly />
+                  <button type="button" onClick={handleCopyLink} className="w-fit">
+                    <RxCopy />
+                  </button>
+                </div>
+                {isCopied && <span>'Copied!'</span>}
+                <p className="font-bold text-xl my-4">OR</p>
+                <p className="lg:text-xl w-3/4 my-2">If you have your drivers information available, add each driver.</p>
+                <button type="button" onClick={() => setModalDriver('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 my-6 lg:w-1/2 lg:text-xl">+ Add Driver</button>
+                <div className={modalDriver}>
+                  <AddDriversModal setModalDriver={setModalDriver} />
+                </div>
               </div>
               <div>
                 <label className="CostumerMultiStepsLabel">
