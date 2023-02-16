@@ -133,7 +133,7 @@ const CostumerMultiStepsForm = () => {
   // ]
   const [modalDriver,setModalDriver] = useState('modal_inactive');
   const [modalVehicle,setModalVehicle] = useState('modal_inactive');
-  const copyText = 'https://myafiquote.com/{dot}/addDriver';
+  const copyText = `https://myafiquote.com/${insuranceForm.dotNumber}/addDriver`;
   const handleCopyLink = () => {
     navigator.clipboard.writeText(copyText)
     setIsCopied(true);
@@ -171,8 +171,8 @@ const CostumerMultiStepsForm = () => {
                   <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
                 </label>
               </div>
-              <div className="lg:grid lg:grid-cols-2 lg:gap-4">
-                <h3 className="lg:text-xl">Please confirm the below information.</h3>
+              <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
+                <h3 className="lg:text-xl lg:col-span-2">Please confirm the below information.</h3>
                 <label className="CostumerMultiStepsLabel lg:col-span-2">
                   <h4 className="w-fit pl-4 text-xl">Company Name</h4>
                   <input name="companyName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.companyName} />
@@ -201,9 +201,9 @@ const CostumerMultiStepsForm = () => {
               </div>
               <div className="flex flex-col items-center">
                 <h3 className="lg:text-xl w-5/6 mb-2">We found a few vehicles associated with your DOT number.</h3>
-                <div className="max-h-[55vh] overflow-y-scroll rounded border-2 border-red-700 px-4 pb-4 shadow-xl lg:w-3/4">
+                <div className="max-h-[55vh] overflow-y-scroll flex flex-col gap-y-4 rounded border-2 border-red-700 p-4 shadow-xl lg:w-3/4 lg:p-8 lg:gap-y-8 vehicles_table">
                   {vehiclesArray.map((vehicle) => (
-                  <div className="mt-4 flex flex-col lg:flex-row" key={vehicle.vin}>
+                  <div className="flex flex-col lg:flex-row" key={vehicle.vin}>
                     <div>
                       <h4 className="text-left font-bold text-xl">{vehicle.year} {vehicle.model}</h4>
                       <h5 className="text-left text-sm">VIN: {vehicle.vin}</h5>

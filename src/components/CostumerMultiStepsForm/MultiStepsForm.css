@@ -138,6 +138,25 @@ h2 {
   justify-content: center;
 }
 
+/* width */
+.vehicles_table::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+.vehicles_table::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+.vehicles_table::-webkit-scrollbar-thumb {
+  background: rgb(189, 22, 22);
+}
+
+.vehicles_table::placeholder {
+  color: rgb(255, 253, 253);
+}
+
 @media (min-width: 1024px) {
   .circlesDiv {
     width: 50%;
@@ -171,5 +190,9 @@ h2 {
     padding: .8rem 4rem;
     border-radius: 1.5rem;
     font-size: 1.3rem;
+  }
+
+  .vehicles_table::-webkit-scrollbar {
+    width: 8px;
   }
 }
