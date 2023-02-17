@@ -11,7 +11,7 @@ import { RxCopy } from "react-icons/rx";
 import './MultiStepsForm.css';
 
 const CostumerMultiStepsForm = () => {
-  const { next, jump, current, total } = useSteps();
+  const { next, current, total } = useSteps();
   const [isCopied, setIsCopied] = useState(false);
   const [comercialForm, setComercialForm] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,12 +45,13 @@ const CostumerMultiStepsForm = () => {
     });
   };
 
-  const updateWithDotNumber = async (dotNumber) => {
-    if (dotChecked || ['0', ''].includes(dotNumber)) {
-      jump(2);
+  const handleStep1Submit = async (event) => {
+    event.preventDefault();
+    if (dotChecked || ['0', ''].includes(insuranceForm.dotNumber)) {
+      next();
       return;
     };
-    const response = await sendDotAxios(dotNumber);
+    const response = await sendDotAxios(insuranceForm.dotNumber);
     if (response) {
       setInsuranceForm((prevState)=> {
         return({
@@ -64,13 +65,33 @@ const CostumerMultiStepsForm = () => {
           "address": response.phyStreet
         });
       });
-      jump(2);
+      next();
     } else {
       alert('Invalid DOT Number')
     }
   };
 
-  const handleSubmit = async(event) => {
+  const handleStep2Submit = async (event) => {
+    event.preventDefault();
+    next();
+  };
+
+  const handleStep3Submit = async (event) => {
+    event.preventDefault();
+    next();
+  };
+
+  const handleStep4Submit = async (event) => {
+    event.preventDefault();
+    next();
+  };
+
+  const handleStep5Submit = async (event) => {
+    event.preventDefault();
+    next();
+  };
+
+  const handleFinalSubmit = async(event) => {
     event.preventDefault();
     setLoading(true);
     setTimeout(() => {
@@ -152,138 +173,138 @@ const CostumerMultiStepsForm = () => {
           <div className="circlesDiv">
             <Circles circleNumber={total} current={current} />
           </div>
-          <form onSubmit={handleSubmit} className="multiStepsForm">
-            <Steps>
-              <div>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">DOT Number</h4>
-                  {!dotChecked && <input name="dotNumber" type="number" pattern="\d*" className="multistepsinput" id="dotNumberInput" onChange={handleChange} value={insuranceForm.dotNumber} />}
-                  <div className="flex items-center pl-4">
-                    <input type="checkbox" className="w-fit mr-4" checked={dotChecked} onChange={() =>setDotChecked(!dotChecked)} />I do not have a DOT number yet
-                  </div>
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Years In Business</h4>
-                  <input name="businessYears" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.businessYears} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-left text-xl">When would you like to start?</h4>
-                  <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
-                </label>
-              </div>
-              <div className="lg:grid lg:grid-cols-2 lg:gap-x-12">
-                <h3 className="lg:text-xl lg:col-span-2">Please confirm the below information.</h3>
-                <label className="CostumerMultiStepsLabel lg:col-span-2">
-                  <h4 className="w-fit pl-4 text-xl">Company Name</h4>
-                  <input name="companyName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.companyName} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Garage State</h4>
-                  <select name="garageState" className="multiStepsselect" onChange={handleChange} value={insuranceForm.garageState}>
-                    <option value="selectState">Select State</option>
-                    {usStates.map((state) => (
-                      <option key={state.id} value={state.value_back}>{state.value}</option>
-                    ))}
-                  </select>
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Garage Zip Code</h4>
-                  <input name="garageZip" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.garageZip} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Number of Trucks</h4>
-                  <input name="trucks" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.trucks} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Number of Drivers</h4>
-                  <input name="drivers" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
-                </label>
-              </div>
-              <div className="flex flex-col items-center">
-                <h3 className="lg:text-xl w-5/6 mb-2">We found a few vehicles associated with your DOT number.</h3>
-                <div className="max-h-[55vh] overflow-y-scroll flex flex-col gap-y-4 rounded border-2 border-red-700 p-4 shadow-xl lg:w-3/4 lg:p-8 lg:gap-y-8 vehicles_table">
-                  {vehiclesArray.map((vehicle) => (
-                  <div className="flex flex-col lg:flex-row" key={vehicle.vin}>
-                    <div>
-                      <h4 className="text-left font-bold text-xl">{vehicle.year} {vehicle.model}</h4>
-                      <h5 className="text-left text-sm">VIN: {vehicle.vin}</h5>
-                    </div>
-                    <div className="flex justify-evenly mt-2">
-                      <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-green-700">Approve</button>
-                      <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-red-700">Remove</button>
-                    </div>
-                  </div>
+          <Steps>
+            <form onSubmit={handleStep1Submit} className="multiStepsForm">
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">DOT Number</h4>
+                {!dotChecked && <input name="dotNumber" type="number" pattern="\d*" className="multistepsinput" id="dotNumberInput" onChange={handleChange} value={insuranceForm.dotNumber} />}
+                <div className="flex items-center pl-4">
+                  <input type="checkbox" className="w-fit mr-4" checked={dotChecked} onChange={() =>setDotChecked(!dotChecked)} />I do not have a DOT number yet
+                </div>
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Years In Business</h4>
+                <input name="businessYears" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.businessYears} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-left text-xl">When would you like to start?</h4>
+                <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
+              </label>
+              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+            </form>
+            <form onSubmit={handleStep2Submit}  className="lg:grid lg:grid-cols-2 lg:gap-x-12 min-h-[65vh]">
+              <h3 className="lg:text-xl lg:col-span-2">Please confirm the below information.</h3>
+              <label className="CostumerMultiStepsLabel lg:col-span-2">
+                <h4 className="w-fit pl-4 text-xl">Company Name</h4>
+                <input name="companyName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.companyName} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Garage State</h4>
+                <select name="garageState" className="multiStepsselect" onChange={handleChange} value={insuranceForm.garageState}>
+                  <option value="selectState">Select State</option>
+                  {usStates.map((state) => (
+                    <option key={state.id} value={state.value_back}>{state.value}</option>
                   ))}
-                </div>
-                <button type="button" onClick={() => setModalVehicle('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 mt-8 lg:text-xl lg:w-1/2">+ Add Vehicle</button>
-                <div className={modalVehicle}>
-                  <AddVehiclesModal setModalVehicle={setModalVehicle} vehiclesArray={vehiclesArray} setVehiclesArray={setVehiclesArray} />
-                </div>
-              </div>
-              <div className="flex flex-col items-center">
-                <h3 className="lg:text-xl w-3/4 my-2">Copy the link below and text it to your {insuranceForm.drivers} drivers.</h3>
-                <h3 className="lg:text-xl w-3/4 my-2">We will let you know when each driver completes the form.</h3>
-                <div className="flex items-center mt-4 border-slate-300 border-2 rounded-3xl p-2 lg:w-1/2 lg:mt-8">
-                  <input type="text" value={copyText} className="bg-white lg:px-2" readOnly />
-                  <button type="button" onClick={handleCopyLink} className="w-fit">
-                    <RxCopy />
-                  </button>
-                </div>
-                {isCopied && <span>'Copied!'</span>}
-                <p className="font-bold text-xl my-4">OR</p>
-                <p className="lg:text-xl w-3/4 my-2">If you have your drivers information available, add each driver.</p>
-                <button type="button" onClick={() => setModalDriver('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 my-6 lg:w-1/2 lg:text-xl">+ Add Driver</button>
-                <div className={modalDriver}>
-                  <AddDriversModal setModalDriver={setModalDriver} />
-                </div>
-              </div>
-              <div>
-                <label className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 text-xl">Your Name</h4>
-                  <input name="userName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.userName} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <div className="flex justify-start items-center">
-                    <h4 className="w-fit pl-4 text-left text-xl">Email</h4>
-                    <p className="text-sm w-fit ml-2 italic">(Where we will email your quote)</p>
-                  </div>
-                  <input name="email" type="email" className="multistepsinput" onChange={handleChange} value={insuranceForm.email} />
-                </label>
-                <label className="CostumerMultiStepsLabel">
-                  <div className="flex justify-start items-center">
-                    <h4 className="w-fit pl-4 text-left text-xl">Cell Phone</h4>
-                    <p className="text-sm w-fit ml-2 italic">(Where we will email your quote)</p>
-                  </div>
-                  <input name="phone" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.phone} />
-                </label>
-              </div>
-              <div>
-                <div className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 mb-2 text-xl">Radius of driving</h4>
-                  <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                    <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "0" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="0">0 - 50 Miles</button>
-                    <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "51" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="51">51 - 200 Miles</button>
-                    <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "201" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="201">201 - 500 Miles</button>
-                    <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "501" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="501">501+ Miles</button>
-                  </div>
-                </div>
-                <div className="CostumerMultiStepsLabel">
-                  <h4 className="w-fit pl-4 my-2 text-xl">Select your coverage(s)</h4>
+                </select>
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Garage Zip Code</h4>
+                <input name="garageZip" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.garageZip} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Number of Trucks</h4>
+                <input name="trucks" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.trucks} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Number of Drivers</h4>
+                <input name="drivers" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
+              </label>
+              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+            </form>
+            <form onSubmit={handleStep3Submit}  className="flex flex-col items-center min-h-[65vh]">
+              <h3 className="lg:text-xl w-5/6 mb-2">We found a few vehicles associated with your DOT number.</h3>
+              <div className="max-h-[55vh] overflow-y-scroll flex flex-col gap-y-4 rounded border-2 border-red-700 p-4 shadow-xl lg:w-3/4 lg:p-8 lg:gap-y-8 vehicles_table">
+                {vehiclesArray.map((vehicle) => (
+                <div className="flex flex-col lg:flex-row" key={vehicle.vin}>
                   <div>
-                    <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.al ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="al">Automotive Liability</button>
-                    <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.ntl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="ntl">Non-Trucking Liability</button>
-                    <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.pd ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="pd">Physical Damage</button>
-                    <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.mtc ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="mtc">Motor Truck Cargo</button>
-                    <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.gl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="gl">General Liability</button>
+                    <h4 className="text-left font-bold text-xl">{vehicle.year} {vehicle.model}</h4>
+                    <h5 className="text-left text-sm">VIN: {vehicle.vin}</h5>
+                  </div>
+                  <div className="flex justify-evenly mt-2">
+                    <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-green-700">Approve</button>
+                    <button type="button" className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-red-700">Remove</button>
                   </div>
                 </div>
+                ))}
               </div>
-            </Steps>
-            <div className="multiStepsButtonDiv">
-              {current < total && <button type="button" className="multiStepsButtonNext" onClick={current === 1 ? () => updateWithDotNumber(insuranceForm.dotNumber) : next}>NEXT</button>}
-              {current === total && <button type="submit" className="multiStepsButtonNext">SUBMIT</button>}
-            </div>
-          </form>
+              <button type="button" onClick={() => setModalVehicle('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 mt-8 lg:text-xl lg:w-1/2">+ Add Vehicle</button>
+              <div className={modalVehicle}>
+                <AddVehiclesModal setModalVehicle={setModalVehicle} vehiclesArray={vehiclesArray} setVehiclesArray={setVehiclesArray} />
+              </div>
+              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+            </form>
+            <form onSubmit={handleStep4Submit}  className="flex flex-col items-center min-h-[65vh]">
+              <h3 className="lg:text-xl w-3/4 my-2">Copy the link below and text it to your {insuranceForm.drivers} drivers.</h3>
+              <h3 className="lg:text-xl w-3/4 my-2">We will let you know when each driver completes the form.</h3>
+              <div className="flex items-center mt-4 border-slate-300 border-2 rounded-3xl p-2 lg:w-1/2 lg:mt-8">
+                <input type="text" value={copyText} className="bg-white lg:px-2" readOnly />
+                <button type="button" onClick={handleCopyLink} className="w-fit">
+                  <RxCopy />
+                </button>
+              </div>
+              {isCopied && <span>'Copied!'</span>}
+              <p className="font-bold text-xl my-4">OR</p>
+              <p className="lg:text-xl w-3/4 my-2">If you have your drivers information available, add each driver.</p>
+              <button type="button" onClick={() => setModalDriver('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 my-6 lg:w-1/2 lg:text-xl">+ Add Driver</button>
+              <div className={modalDriver}>
+                <AddDriversModal setModalDriver={setModalDriver} />
+              </div>
+              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+            </form>
+            <form onSubmit={handleStep5Submit}  className="multiStepsForm">
+              <label className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 text-xl">Your Name</h4>
+                <input name="userName" type="text" className="multistepsinput" onChange={handleChange} value={insuranceForm.userName} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <div className="flex justify-start items-center">
+                  <h4 className="w-fit pl-4 text-left text-xl">Email</h4>
+                  <p className="text-sm w-fit ml-2 italic">(Where we will email your quote)</p>
+                </div>
+                <input name="email" type="email" className="multistepsinput" onChange={handleChange} value={insuranceForm.email} />
+              </label>
+              <label className="CostumerMultiStepsLabel">
+                <div className="flex justify-start items-center">
+                  <h4 className="w-fit pl-4 text-left text-xl">Cell Phone</h4>
+                  <p className="text-sm w-fit ml-2 italic">(Where we will email your quote)</p>
+                </div>
+                <input name="phone" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.phone} />
+              </label>
+              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+            </form>
+            <form onSubmit={handleFinalSubmit} className="multiStepsForm">
+              <div className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 mb-2 text-xl">Radius of driving</h4>
+                <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+                  <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "0" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="0">0 - 50 Miles</button>
+                  <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "51" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="51">51 - 200 Miles</button>
+                  <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "201" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="201">201 - 500 Miles</button>
+                  <button type="button" name="radiusDriving" className={`py-2 rounded-2xl ${insuranceForm.radiusDriving === "501" ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="501">501+ Miles</button>
+                </div>
+              </div>
+              <div className="CostumerMultiStepsLabel">
+                <h4 className="w-fit pl-4 my-2 text-xl">Select your coverage(s)</h4>
+                <div>
+                  <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.al ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="al">Automotive Liability</button>
+                  <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.ntl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="ntl">Non-Trucking Liability</button>
+                  <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.pd ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="pd">Physical Damage</button>
+                  <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.mtc ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="mtc">Motor Truck Cargo</button>
+                  <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.gl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="gl">General Liability</button>
+                </div>
+              </div>
+              <button type="submit" className="multiStepsButtonNext">SUBMIT</button>
+            </form>
+          </Steps>
         </>
       }
       { loading && (

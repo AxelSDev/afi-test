@@ -79,13 +79,12 @@
 .multiStepsButtonNext {
   width: fit-content;
   padding: 0.5rem 2.5rem;
-  --tw-bg-opacity: 1;
-  background-color: rgb(185 28 28 / var(--tw-bg-opacity));
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  background-color: rgb(185 28 28);
+  color: rgb(255 255 255);
   border-radius: 1.5rem;
-  margin: 8px 0;
+  margin: auto 0;
   font-weight: 700;
+  align-self: center;
 }
 
 h2 {
