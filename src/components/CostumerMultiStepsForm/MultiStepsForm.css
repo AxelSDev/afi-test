@@ -76,17 +76,6 @@
   width: fit-content;
 }
 
-.multiStepsButtonNext {
-  width: fit-content;
-  padding: 0.5rem 2.5rem;
-  background-color: rgb(185 28 28);
-  color: rgb(255 255 255);
-  border-radius: 1.5rem;
-  margin: auto 0;
-  font-weight: 700;
-  align-self: center;
-}
-
 h2 {
   font-weight: 700;
 }
@@ -168,12 +157,5 @@ h2 {
   .CostumerMultiStepsLabel {
     font-size: 1.125rem;
     margin-top: 16px;
-  }
-
-  .multiStepsButtonNext {
-    padding: .8rem 4rem;
-    border-radius: 1.5rem;
-    font-size: 1.3rem;
-    justify-self: center;
   }
 }

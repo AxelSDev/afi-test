@@ -203,9 +203,12 @@ const CostumerMultiStepsForm = () => {
                 <h4 className="w-fit pl-4 text-left text-xl">When would you like to start?</h4>
                 <input name="coverageStartDate" type="date" className="multistepsinput appearance-none" onChange={handleChange} value={insuranceForm.coverageStartDate} />
               </label>
-              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto">
+                <p className="w-fit lg:text-xl">Continue</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
-            <form onSubmit={handleStep2Submit}  className="lg:grid lg:grid-cols-2 lg:gap-x-12 min-h-[55vh] lg:w-3/4">
+            <form onSubmit={handleStep2Submit}  className="lg:grid lg:grid-cols-2 lg:gap-x-12 min-h-[55vh] lg:w-3/5">
               <h3 className="lg:text-xl lg:col-span-2">Please confirm the below information.</h3>
               <label className="CostumerMultiStepsLabel lg:col-span-2">
                 <h4 className="w-fit pl-4 text-xl">Company Name</h4>
@@ -228,45 +231,57 @@ const CostumerMultiStepsForm = () => {
                 <h4 className="w-fit pl-4 text-xl">Number of Trucks</h4>
                 <input name="trucks" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.trucks} />
               </label>
-              <label className="CostumerMultiStepsLabel">
+              <label className="CostumerMultiStepsLabel mb-4">
                 <h4 className="w-fit pl-4 text-xl">Number of Drivers</h4>
                 <input name="drivers" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.drivers} />
               </label>
-              <button type="submit" className="multiStepsButtonNext col-span-2">NEXT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto lg:col-span-2">
+                <p className="w-fit lg:text-xl">Continue</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
-            <form onSubmit={handleStep3Submit}  className="flex flex-col items-center min-h-[75vh]">
+            <form onSubmit={handleStep3Submit}  className="flex flex-col items-center min-h-[75vh] lg:w-3/5">
               <h3 className="lg:text-xl w-5/6 mb-2">We found a few vehicles associated with your DOT number.</h3>
-              <div className="max-h-[55vh] overflow-y-scroll flex flex-col rounded border-2 border-red-700 shadow-xl lg:w-3/4 vehicles_table">
+              <div className="max-h-[50vh] overflow-y-scroll flex flex-col rounded vehicles_table">
                 {vehiclesArray.map((vehicle, index) => (
-                <div className={`flex flex-col lg:flex-row border-b-2 border-red-700 ${vehicle.remove ? "bg-red-400": "bg-green-300"} p-4 lg:p-8`} key={vehicle.vin}>
+                <div className="flex px-4 pt-2 lg:px-8" key={vehicle.vin}>
                   <div>
-                    <h4 className="text-left font-bold text-xl">{vehicle.year} {vehicle.model}</h4>
-                    <h5 className="text-left text-sm">VIN: {vehicle.vin}</h5>
+                    <h4 className="text-left font-bold text-md lg:text-3xl">{vehicle.year} {vehicle.model}</h4>
+                    <h5 className="text-left text-sm lg:text-xl">VIN: {vehicle.vin}</h5>
+                    <h6 className={`text-left text-sm font-bold ${vehicle.remove ? "text-red-700" : "invisible"}`}>Not Included</h6>
                   </div>
-                  <div className="flex justify-evenly mt-2">
+                  <div className="flex justify-evenly items-start w-fit gap-x-2 text-xl lg:text-3xl">
                     <button
                       type="button"
-                      className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-green-700"
+                      className={`pb-2 pt-1 rounded-xl w-[36px] lg:w-[64px] text-white font-bold ${vehicle.remove ? "bg-gray-500" : "bg-green-700"}`}
                       onClick={() => acceptVehicleStatus(index)}>
-                      Approve
+                      +
                     </button>
                     <button
                       type="button"
-                      className="w-fit rounded-3xl text-white font-bold py-2 px-8 bg-red-700"
+                      className={`pb-2 pt-1 rounded-xl w-[36px] lg:w-[64px] text-white font-bold ${vehicle.remove ? "bg-red-700" : "bg-gray-500"}`}
                       onClick={() => removeVehicleStatus(index)}>
-                      Remove
+                      -
                     </button>
                   </div>
                 </div>
                 ))}
               </div>
-              <button type="button" onClick={() => setModalVehicle('modal_active')} className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 bg-green-700 mt-8 lg:text-xl lg:w-1/2">+ Add Vehicle</button>
+              <button
+                type="button"
+                onClick={() => setModalVehicle('modal_active')}
+                className="rounded-3xl w-5/6 text-white font-bold py-2 px-8 mb-8 bg-green-700 mt-8 lg:text-xl lg:w-1/2">
+                + Add Vehicle
+              </button>
               <div className={modalVehicle}>
                 <AddVehiclesModal setModalVehicle={setModalVehicle} vehiclesArray={vehiclesArray} setVehiclesArray={setVehiclesArray} />
               </div>
-              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto">
+                <p className="w-fit lg:text-xl">Continue</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
-            <form onSubmit={handleStep4Submit}  className="flex flex-col items-center min-h-[75vh]">
+            <form onSubmit={handleStep4Submit}  className="flex flex-col items-center min-h-[75vh] lg:w-3/5">
               <h3 className="lg:text-xl w-3/4 my-2">Copy the link below and text it to your {insuranceForm.drivers} drivers.</h3>
               <h3 className="lg:text-xl w-3/4 my-2">We will let you know when each driver completes the form.</h3>
               <div className="flex items-center mt-4 border-slate-300 border-2 rounded-3xl p-2 lg:w-1/2 lg:mt-8">
@@ -282,7 +297,10 @@ const CostumerMultiStepsForm = () => {
               <div className={modalDriver}>
                 <AddDriversModal setModalDriver={setModalDriver} />
               </div>
-              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto">
+                <p className="w-fit lg:text-xl">Continue</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
             <form onSubmit={handleStep5Submit}  className="multiStepsForm">
               <label className="CostumerMultiStepsLabel">
@@ -303,7 +321,10 @@ const CostumerMultiStepsForm = () => {
                 </div>
                 <input name="phone" type="number" pattern="\d*" className="multistepsinput" onChange={handleChange} value={insuranceForm.phone} />
               </label>
-              <button type="submit" className="multiStepsButtonNext">NEXT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto">
+                <p className="w-fit lg:text-xl">Continue</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
             <form onSubmit={handleFinalSubmit} className="multiStepsForm">
               <div className="CostumerMultiStepsLabel">
@@ -325,7 +346,10 @@ const CostumerMultiStepsForm = () => {
                   <button type="button" name="coverage" className={`text-left pl-10 py-2 mb-4 rounded-2xl ${coverage.gl ? "bg-red-700 text-white" : "bg-zinc-300"}`} onClick={handleChange} value="gl">General Liability</button>
                 </div>
               </div>
-              <button type="submit" className="multiStepsButtonNext">SUBMIT</button>
+              <button type="submit" className="flex justify-center items-center text-white bg-blue-900 rounded-xl py-2 px-8 my-auto">
+                <p className="w-fit lg:text-xl">Submit</p>
+                <p className="text-2xl w-fit ml-1 lg:text-3xl">&#8594;</p>
+              </button>
             </form>
           </Steps>
         </>
