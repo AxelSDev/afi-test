@@ -7,11 +7,7 @@ const AddVehiclesModal = ({setModalVehicle, vehiclesArray, setVehiclesArray}) =>
       vehicleyear: '',
       make: '',
       model: '',
-      value: '',
-      class_key: '',
-      body_type_key: '',
-      deductible_type: '',
-      deductible: ''
+      value: ''
     }
   );
   const [error, setError] = useState(false);
@@ -39,11 +35,7 @@ const AddVehiclesModal = ({setModalVehicle, vehiclesArray, setVehiclesArray}) =>
           vehicleyear: '',
           make: '',
           model: '',
-          value: '',
-          class_key: '',
-          body_type_key: '',
-          deductible_type: '',
-          deductible: ''
+          value: ''
         }
       );
       setModalVehicle('modal_inactive');
@@ -76,22 +68,6 @@ const AddVehiclesModal = ({setModalVehicle, vehiclesArray, setVehiclesArray}) =>
         <label className="CostumerMultiStepsLabel">
           <h4 className="w-fit pl-4 text-xl">Value</h4>
           <input name="value" type="number" pattern="\d*" onChange={handleVehicleChange} value={vehicle.value} className="bg-white border-2 border-slate-300 rounded-3xl px-4 py-1" />
-        </label>
-        <label className="CostumerMultiStepsLabel">
-          <h4 className="w-fit pl-4 text-xl">Class Key</h4>
-          <input name="class_key" type="text" onChange={handleVehicleChange} value={vehicle.class_key} className="bg-white border-2 border-slate-300 rounded-3xl px-4 py-1" />
-        </label>
-        <label className="CostumerMultiStepsLabel">
-          <h4 className="w-fit pl-4 text-xl">Body Type Key</h4>
-          <input name="body_type_key" type="text" onChange={handleVehicleChange} value={vehicle.body_type_key} className="bg-white border-2 border-slate-300 rounded-3xl px-4 py-1" />
-        </label>
-        <label className="CostumerMultiStepsLabel">
-          <h4 className="w-fit pl-4 text-xl">Deductible Type</h4>
-          <input name="deductible_type" type="text" onChange={handleVehicleChange} value={vehicle.deductible_type} className="bg-white border-2 border-slate-300 rounded-3xl px-4 py-1" />
-        </label>
-        <label className="CostumerMultiStepsLabel">
-          <h4 className="w-fit pl-4 text-xl">Deductible</h4>
-          <input name="deductible" type="text" onChange={handleVehicleChange} value={vehicle.deductible} className="bg-white border-2 border-slate-300 rounded-3xl px-4 py-1" />
         </label>
         <div className="mt-4 lg:col-span-2 lg:mt-8 lg:text-xl flex flex-col items-center lg:flex-col-reverse">
           <button type="button" onClick={addVehicle} className="bg-green-700 text-white rounded-xl p-2 lg:w-3/4"><b>+ Add Vehicle</b></button>

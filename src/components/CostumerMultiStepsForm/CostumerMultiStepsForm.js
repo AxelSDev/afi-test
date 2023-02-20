@@ -107,33 +107,21 @@ const CostumerMultiStepsForm = () => {
         year: '2019',
         make: 'make',
         model: 'Freightliner Cascadia',
-        value: 'value',
-        class_key: 'class_key',
-        body_type_key: 'body_type_key',
-        deductible_type: 'deductible_type',
-        deductible: 'deductible'
+        value: 'value'
       },
       {
         vin: '1NPALU9XX7N662027',
         year: '2019',
         make: 'make',
         model: 'Freightliner Cascadia',
-        value: 'value',
-        class_key: 'class_key',
-        body_type_key: 'body_type_key',
-        deductible_type: 'deductible_type',
-        deductible: 'deductible'
+        value: 'value'
       },
       {
         vin: '1NPALU9XX7N662028',
         year: '2019',
         make: 'make',
         model: 'Freightliner Cascadia',
-        value: 'value',
-        class_key: 'class_key',
-        body_type_key: 'body_type_key',
-        deductible_type: 'deductible_type',
-        deductible: 'deductible'
+        value: 'value'
       }
     ]
   );
