@@ -72,15 +72,6 @@ const CostumerDOTPDF = () => {
             <h4 className="w-fit pl-4 text-xl">DOT Number</h4>
             <input name="submissionNumber" type="number" className="multistepsinput" onChange={handleDOTNumber} value={DOTNumber} />
           </label>
-          {/* <label className="CostumerMultiStepsLabel">
-            <h4 className="w-fit pl-4 text-xl">Producer</h4>
-            <select name="producer" className="multiStepsselect" value={producer.AgentName} disabled>
-              <option value="producer">Select Producer</option>
-              {producers.map((producer) => (
-                <option key={producer.id} value={producer.AgentName}>{producer.AgentName}</option>
-              ))}
-            </select>
-          </label> */}
           <label className="CostumerMultiStepsLabel">
             <h4 className="w-fit pl-4 text-xl">Policy Start Date</h4>
             <input name="policyStartDate" type="date" className="multistepsinput" onChange={handleDate} value={effectiveDate} />
@@ -96,10 +87,10 @@ const CostumerDOTPDF = () => {
           </a>
         </div>
       </Steps>
-        <div className="multiStepsButtonDiv">
-          {current === 1 && <button type="button" className="bg-red-700 text-white w-1/2 rounded-3xl py-2 px-10 mt-12" onClick={getDotData}>GENERATE PDF</button>}
-          {current === total && <button type="button" className="bg-red-700 text-white w-1/2 rounded-xl py-2 px-10 mt-12" onClick={prev}>RETURN</button>}
-        </div>
+      <div className="multiStepsButtonDiv">
+        {current === 1 && <button type="button" className="bg-red-700 text-white w-1/2 rounded-3xl py-2 px-10 mt-12" onClick={getDotData}>GENERATE PDF</button>}
+        {current === total && <button type="button" className="bg-red-700 text-white w-1/2 rounded-xl py-2 px-10 mt-12" onClick={prev}>RETURN</button>}
+      </div>
       </form>
     </>
   );
